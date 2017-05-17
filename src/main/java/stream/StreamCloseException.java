@@ -35,6 +35,7 @@ public class StreamCloseException
 //        System.out.println( "===========" );
 
 
+        // 如果抛出了异常,则其他不同的「异常对象」被压制
         try( Stream<String> stream = strs.stream() )
         {
             RuntimeException theSameException = new RuntimeException( "same" );

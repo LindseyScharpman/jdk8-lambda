@@ -41,5 +41,6 @@ public class StreamTest3
                 .flatMap( x -> Arrays.stream( x ) )
                 .collect( Collectors.toList() );
         System.out.println( st );
+
     }
 }

@@ -32,8 +32,9 @@ public class TypeProblem
         Consumer mix = new X();
         test( mix );
 
-        //        List<Integer> strs = Arrays.asList( 1, 2, 3, 4, 5 );
-        //        strs.stream().forEach( System.out::println );
+        List<Integer> strs = Arrays.asList( 1, 2, 3, 4, 5 );
+        strs.stream().forEach( System.out::println );
+        strs.stream().map( x->x+"xxx" ).forEach( System.out::println );
 
     }
 
