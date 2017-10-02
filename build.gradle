@@ -16,3 +16,35 @@ dependencies {
     // https://mvnrepository.com/artifact/joda-time/joda-time
     compile 'joda-time:joda-time:2.9.9'
 }
+
+
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
+[compileJava,javadoc,compileTestJava]*.options*.encoding = "UTF-8"
+
+
+// 插件Gretty
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:2.0.0'
+    }
+}
+if (!project.plugins.findPlugin(org.akhikhl.gretty.GrettyPlugin))
+    project.apply(plugin: org.akhikhl.gretty.GrettyPlugin)
+gretty{
+    httpEnabled = true
+    servletContainer = "tomcat8"
+    contextpath = "/webappName"
+    host = "localhost"
+    httpPort = 8888
+    scanInterval = 1
+    fastReload = true
+    inplaceMode = soft
+    loggingLevel = "DEBUG"
+    consoleLogEnabled = true
+}

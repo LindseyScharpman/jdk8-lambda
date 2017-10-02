@@ -29,12 +29,14 @@ public class TypeProblem
         test( intConsumer::accept );  // ok
         test( consumer::accept );  // ok
 
+        System.out.println( "===========" );
         Consumer mix = new X();
         test( mix );
+        System.out.println( "===========" );
 
         List<Integer> strs = Arrays.asList( 1, 2, 3, 4, 5 );
         strs.stream().forEach( System.out::println );
-        strs.stream().map( x->x+"xxx" ).forEach( System.out::println );
+        strs.stream().map( x -> x + "xxx" ).forEach( System.out::println );
 
     }
 
@@ -46,7 +48,7 @@ public class TypeProblem
         if( consumer instanceof IntConsumer )
         {
             System.out.println( "actually is IntConsumer!" );
-            ( (IntConsumer) consumer ).accept( 100 );
+            ( consumer ).accept( 100 );
         }
         else
         {

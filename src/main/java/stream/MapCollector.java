@@ -13,7 +13,8 @@ import static java.util.stream.Collector.Characteristics.IDENTITY_FINISH;
 import static java.util.stream.Collector.Characteristics.UNORDERED;
 
 // GroupingByTest--> Set<GroupingByTest> --> Map<GroupingByTest,GroupingByTest>
-// 因为Set<GroupingByTest>类型和Map<GroupingByTest,GroupingByTest>不一样,所以肯定不能设置IDENTITY_FINISH
+// 因为Set<GroupingByTest>类型和Map<GroupingByTest,GroupingByTest>不一样
+// 所以肯定不能设置IDENTITY_FINISH
 public class MapCollector<T> implements Collector<T, Set<T>, Map<T, T>>
 {
     @Override

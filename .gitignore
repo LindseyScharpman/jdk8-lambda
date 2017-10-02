@@ -15,3 +15,5 @@ Servers/
 #gradle
 build/
 .gradle/
+src/main/resources/
+src/test/

@@ -22,31 +22,31 @@ public class StreamCloseException
 //        System.out.println( "===========" );
 
 
-//        try( Stream<String> stream = strs.stream() )
-//        {
-//            stream.onClose( () -> {
-//                System.out.println( "first" );
-//                throw new RuntimeException( "first" );
-//            } ).onClose( () -> {
-//                System.out.println( "second" );
-//                throw new NullPointerException( "second" );
-//            } ).forEach( System.out::println );
-//        }
-//        System.out.println( "===========" );
+        try( Stream<String> stream = strs.stream() )
+        {
+            stream.onClose( () -> {
+                System.out.println( "first" );
+                throw new RuntimeException( "first" );
+            } ).onClose( () -> {
+                System.out.println( "second" );
+                throw new NullPointerException( "second" );
+            } ).forEach( System.out::println );
+        }
+        System.out.println( "===========" );
 
 
         // 如果抛出了异常,则其他不同的「异常对象」被压制
-        try( Stream<String> stream = strs.stream() )
-        {
-            RuntimeException theSameException = new RuntimeException( "same" );
-            stream.onClose( () -> {
-                System.out.println( "first" );
-                throw theSameException;
-            } ).onClose( () -> {
-                System.out.println( "second" );
-                throw theSameException;
-            } ).forEach( System.out::println );
-        }
+//        try( Stream<String> stream = strs.stream() )
+//        {
+//            RuntimeException theSameException = new RuntimeException( "same" );
+//            stream.onClose( () -> {
+//                System.out.println( "first" );
+//                throw theSameException;
+//            } ).onClose( () -> {
+//                System.out.println( "second" );
+//                throw theSameException;
+//            } ).forEach( System.out::println );
+//        }
 
     }
 }

@@ -1,5 +1,6 @@
 package jodaAtime;
 
+import java.sql.Timestamp;
 import java.time.*;
 import java.time.temporal.ChronoUnit;
 
@@ -43,11 +44,17 @@ public class JavaTimeTest
         System.out.println( ym.lengthOfMonth() );
         System.out.println( ym.lengthOfYear() );
         System.out.println( ym.isLeapYear() );
-        System.out.println(ldt.toLocalDate().isLeapYear());
+        System.out.println( ldt.toLocalDate().isLeapYear() );
         System.out.println( "----------------" );
 
         //UTC时间
         Instant instant = Instant.now();
-        System.out.println(instant);
+        System.out.println( instant );
+
+        LocalDateTime localDT = LocalDateTime.ofInstant( instant, zoneId );
+        System.out.println( localDT );
+        Timestamp timestamp = new Timestamp( System.currentTimeMillis() );
+        localDT = timestamp.toLocalDateTime();
+        System.out.println( localDT );
     }
 }

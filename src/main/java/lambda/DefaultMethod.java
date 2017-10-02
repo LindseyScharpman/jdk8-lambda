@@ -1,10 +1,24 @@
 package lambda;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 public class DefaultMethod
 {
 
     public static void main( String[] args )
     {
+
+        Stream<String> s = Stream.of("x","y","z");
+        String[] strings = s.toArray( value -> {
+            System.out.println(value);
+            return new String[value];
+        });
+
+        strings = s.toArray(String[]::new);
+        for(String s2 : strings)
+            System.out.println(s2);
+
         DefaultMethod D = new DefaultMethod();
         C c = D.new C();
         c.fun();
@@ -20,7 +34,8 @@ public class DefaultMethod
         @Override
         public void fun()
         {
-            super.fun();//F1.super.fun();
+            super.fun();
+            // F1.super.fun();
             // complie error F2.super.fun();
         }
     }

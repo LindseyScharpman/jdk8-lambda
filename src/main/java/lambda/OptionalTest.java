@@ -2,7 +2,6 @@ package lambda;
 
 import java.util.*;
 
-// TODO
 public class OptionalTest {
     public static void main(String[] args) {
 

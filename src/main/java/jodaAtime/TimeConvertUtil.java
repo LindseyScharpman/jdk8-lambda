@@ -31,7 +31,7 @@ public class TimeConvertUtil
 
     public static void main( String[] args )
     {
-        System.out.println( covertUTC2Date( "2017-05-17T21:47:45.411Z" ) );
+        System.out.println( covertUTC2Date( "2017-05-17T09:47:45.411Z" ) );
         System.out.println( convertDate2UTC( new Date() ) );
         System.out.println(convertDate2LocalByDateFormat( new Date(), "yyyy-MM-dd HH:mm:ss" ));
     }

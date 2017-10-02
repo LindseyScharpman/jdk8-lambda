@@ -54,7 +54,6 @@ public class GroupingByTest
 
     }
 
-
     // 自己的groupingBy
     @SuppressWarnings( "unchecked" )
     public static <T, A, K, D> MyCollectorImpl<? super T, ?, Map<K, D>> groupingBy(
@@ -69,7 +68,8 @@ public class GroupingByTest
 
         // 下游收集器只需要在上游收集器中间拦截下处理过程即可
         // T ---(classfier)---> Map<K,A> ---(下游的finisher)---> Map<K,D>
-        BiConsumer<Map<K, A>, ? super T> curAcc = ( m, t ) -> {
+        BiConsumer<Map<K, A>, ? super T> curAcc = ( m, t ) ->
+        {
             // t对应的键为key,key对应的容器里面添加t
             K key = classfier.apply( t );
             A container = m.computeIfAbsent( key, ( arbitrary ) -> downSuppiler.get() );
@@ -90,7 +90,8 @@ public class GroupingByTest
             Supplier<Map<K, D>> curSupplier = supplier;
             BinaryOperator<Map<K, A>> curCombiner = GroupingByTest.mapMerger( downStream.combiner() );
             // Map<K,A> ---> Map<K,D>
-            Function<Map<K, A>, Map<K, D>> curFinisher = ( m ) -> {
+            Function<Map<K, A>, Map<K, D>> curFinisher = ( m ) ->
+            {
                 m.replaceAll( ( k, v ) -> (A) downFinisher.apply( v ) );
                 return (Map<K, D>) m;
             };
@@ -101,7 +102,8 @@ public class GroupingByTest
     public static <K, V, M extends Map<K, V>>
     BinaryOperator<M> mapMerger( BinaryOperator<V> mergeFunction )
     {
-        return ( m1, m2 ) -> {
+        return ( m1, m2 ) ->
+        {
             for( Map.Entry<K, V> e : m2.entrySet() )
                 m1.merge( e.getKey(), e.getValue(), mergeFunction );
             return m1;

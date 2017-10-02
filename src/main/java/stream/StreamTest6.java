@@ -32,7 +32,8 @@ public class StreamTest6
         minS = students.stream().collect( Collectors.minBy( Comparator.comparingInt( x -> x.getScore() ) ) );
         minS.ifPresent( System.out::println );
 
-        DoubleSummaryStatistics ds = students.stream().collect( Collectors.summarizingDouble( x -> x.getScore() ) );
+        DoubleSummaryStatistics ds = students.stream().
+                collect( Collectors.summarizingDouble( x -> x.getScore() ) );
         System.out.println( ds.toString() );
 
         String allName = students.stream()
@@ -43,6 +44,8 @@ public class StreamTest6
 
         // 多重分组/分区
         System.out.println( "=======================" );
+        Map<Integer, List<Student>> m = students.stream().collect( Collectors.groupingBy( x -> x.getScore() ) );
+        System.out.println( m );
         Map<Integer, Map<String, List<Student>>> map = students.stream()
                 .collect( Collectors.groupingBy( x -> x.getScore(),
                         Collectors.groupingBy( x -> x.getName() ) ) );
@@ -61,7 +64,8 @@ public class StreamTest6
         System.out.println( "=========================" );
         Map<String, Student> map4 = students.stream()
                 .collect( Collectors.groupingBy( x -> x.getName(),
-                        Collectors.collectingAndThen( Collectors.minBy( Comparator.comparingInt( x -> x.getScore() ) ), x -> x.get() ) ) );
+                        Collectors.collectingAndThen( Collectors.minBy(
+                                Comparator.comparingInt( x -> x.getScore() ) ), x -> x.get() ) ) );
         System.out.println( map4 );
 
 
